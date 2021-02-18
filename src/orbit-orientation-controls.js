@@ -83,6 +83,13 @@ class OrbitOrientationControls {
         this.lastAngle_ = currentAngle;
       }
 
+      // @jc
+      if (this.lastAngle_.z * currentAngle.z < 0 && Math.abs(this.lastAngle_.z) > 1) {
+        this.lastAngle_.z = this.lastAngle_.z * -1;
+      }
+
+      // @jc
+      this.speed = 0.00706;
       this.orbit.rotateLeft((this.lastAngle_.z - currentAngle.z) * (1 + this.speed));
       this.orbit.rotateUp((this.lastAngle_.y - currentAngle.y) * (1 + this.speed));
       this.lastAngle_ = currentAngle;
